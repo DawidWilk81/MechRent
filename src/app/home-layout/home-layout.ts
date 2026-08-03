@@ -38,45 +38,9 @@ export class HomeLayout implements AfterViewInit, OnDestroy {
     ).matches;
 
     if (reducedMotion) return;
-
-    this.ngZone.runOutsideAngular(() => {
-      this.intersectionObserver = new IntersectionObserver(
-        ([entry]) => (entry.isIntersecting ? this.startLoop() : this.stopLoop()),
-        { threshold: 0 }
-      );
-
-      this.intersectionObserver.observe(this.heroSection.nativeElement);
-    });
-  }
-
-  private startLoop(): void {
-    if (this.rafId !== null) return;
-
-    const loop = (): void => {
-      this.updateParallax();
-      this.rafId = requestAnimationFrame(loop);
-    };
-
-    this.rafId = requestAnimationFrame(loop);
-  }
-
-  private stopLoop(): void {
-    if (this.rafId !== null) {
-      cancelAnimationFrame(this.rafId);
-      this.rafId = null;
-    }
-  }
-
-  private updateParallax(): void {
-    const rect = this.heroSection.nativeElement.getBoundingClientRect();
-    const offset = rect.top * this.parallaxFactor;
-
-    this.heroMedia.nativeElement.style.transform =
-      `translate3d(0, ${offset}px, 0) scale(1.15)`;
   }
 
   ngOnDestroy(): void {
-    this.stopLoop();
     this.intersectionObserver?.disconnect();
   }
 }
