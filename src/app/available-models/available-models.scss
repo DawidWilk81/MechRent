@@ -1,0 +1,318 @@
+@use '../../scss/variables' as *;
+@use '../../scss/placeholders' as *;
+@use '../../scss/mixins' as *;
+
+/* =========================================================
+   AVAILABILITY / CENNIK I DOSTĘPNOŚĆ
+========================================================= */
+.availability {
+  background: $background;
+  padding-block: $sectionSpacing;
+}
+
+.availability_header {
+  max-width: $containerWidth;
+  margin-inline: auto;
+  padding-inline: $containerPadding;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.availability_intro {
+  max-width: 640px;
+}
+
+.availability_label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+
+  .availability_label_line {
+    width: 36px;
+    height: 2px;
+    background: $accent;
+    display: block;
+  }
+
+  .availability_label_text {
+    color: $accent;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+  }
+}
+
+.availability_title {
+  font-family: $fontDisplay;
+  font-weight: 900;
+  color: $textPrimary;
+  @include fluidText(1.75rem, 4vw, 2.75rem, null, 1.15);
+  margin: 0;
+}
+
+.availability_desc {
+  max-width: 340px;
+  color: $textSecondary;
+  @include fluidText(.9rem, .9vw, 1rem, null, 1.7);
+  margin: 6px 0 0;
+}
+
+/* ---------- Filtry ---------- */
+.availability_filters {
+  max-width: $containerWidth;
+  margin-inline: auto;
+  padding-inline: $containerPadding;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.filter_btn {
+  background: $surfaceAlt;
+  color: $textSecondary;
+  border: none;
+  padding: 11px 22px;
+  border-radius: $radiusSm;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  cursor: pointer;
+  transition: background $transitionFast, color $transitionFast;
+
+  &:hover {
+    color: $textPrimary;
+  }
+
+  &.active {
+    background: $accent;
+    color: #fff;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $accent;
+    outline-offset: 2px;
+  }
+}
+
+/* ---------- Siatka kart ---------- */
+.availability_grid {
+  max-width: $containerWidth;
+  margin-inline: auto;
+  padding-inline: $containerPadding;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $containerPadding;
+}
+
+.equipment_card {
+  background: $card;
+  border-radius: $radiusMd;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform $transitionBase $easeOut, box-shadow $transitionBase $easeOut;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: $shadowLg;
+  }
+}
+
+.equipment_media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background-size: cover;
+  background-position: center;
+}
+
+.equipment_status {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: $success;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  padding: 6px 12px;
+  border-radius: $radiusFull;
+
+  &.unavailable {
+    background: $error;
+  }
+}
+
+.equipment_category {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  background: $accent;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  padding: 6px 12px;
+  border-radius: $radiusSm;
+}
+
+.equipment_body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 22px;
+}
+
+.equipment_heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+
+  h3 {
+    font-family: $fontDisplay;
+    font-weight: 800;
+    font-size: 1.125rem;
+    color: $textPrimary;
+    margin: 0;
+  }
+}
+
+.equipment_rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: $textSecondary;
+  font-size: .8125rem;
+  font-weight: 600;
+  white-space: nowrap;
+
+  svg {
+    color: $warning;
+  }
+}
+
+.equipment_stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding-block: 16px;
+  border-top: 1px solid $divider;
+  border-bottom: 1px solid $divider;
+}
+
+.stat_col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+  border-right: 1px solid $divider;
+
+  &:last-child {
+    border-right: none;
+  }
+}
+
+.stat_value {
+  color: $textPrimary;
+  font-weight: 700;
+  font-size: .9375rem;
+}
+
+.stat_label {
+  color: $textMuted;
+  font-size: .6875rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+}
+
+.equipment_price {
+  .price_label {
+    display: block;
+    color: $textMuted;
+    font-size: .6875rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    margin-bottom: 6px;
+  }
+
+  .price_value {
+    color: $textPrimary;
+    font-weight: 800;
+    font-size: 1.25rem;
+    margin: 0;
+  }
+
+  .price_muted {
+    color: $textMuted;
+    font-weight: 600;
+    font-size: .9375rem;
+  }
+}
+
+.equipment_cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: $accent;
+  color: #fff;
+  font-weight: 700;
+  font-size: .875rem;
+  letter-spacing: .04em;
+  padding: 14px;
+  border-radius: $radiusSm;
+  transition: background $transitionFast;
+
+  svg {
+    transition: transform .18s ease;
+  }
+
+  &:hover {
+    background: $accentHover;
+
+    svg {
+      transform: translateX(3px);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid $textPrimary;
+    outline-offset: 3px;
+  }
+}
+
+/* =========================================================
+   RESPONSYWNOŚĆ
+========================================================= */
+@media (max-width: 1024px) {
+  .availability_grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 922px) {
+  .availability_header {
+    flex-direction: column;
+  }
+
+  .availability_desc {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .availability_grid {
+    grid-template-columns: 1fr;
+  }
+
+  .equipment_heading {
+    flex-wrap: wrap;
+  }
+}

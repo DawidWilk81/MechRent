@@ -1,0 +1,209 @@
+@use '../../scss/variables' as *;
+@use '../../scss/placeholders' as *;
+@use '../../scss/mixins' as *;
+
+/* =========================================================
+   HERO
+========================================================= */
+.hero {
+  position: relative;
+  min-height: calc(100vh - #{$headerHeight});
+  width: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  isolation: isolate;
+
+  .hero_media {
+    position: absolute;
+    inset: 0;
+    background-image: url('/hero_image.jpg');
+    background-size: cover;
+    background-position: right center;
+    z-index: -2;
+    will-change: transform;
+  }
+
+  .hero_overlay {
+    position: absolute;
+    inset: 0;
+    background: $heroGradient;
+    z-index: -1;
+  }
+
+  .hero_content {
+    max-width: $containerWidth;
+    width: 100%;
+    margin-inline: auto;
+    padding: 64px $containerPadding 56px;
+  }
+
+  .hero_label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 22px;
+
+    .hero_label_line {
+      width: 36px;
+      height: 2px;
+      background: $accent;
+      display: block;
+    }
+
+    .hero_text {
+      color: $accent;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+  }
+
+  .heroTitle {
+    font-family: $fontDisplay;
+    font-weight: 900;
+    @include fluidText(2.125rem, 6vw, 4rem, null, 1.06);
+    letter-spacing: -0.01em;
+    margin-bottom: 26px;
+    display: flex;
+    flex-direction: column;
+
+    .titleWhite {
+      color: $textPrimary;
+    }
+
+    .titleAccent {
+      color: $accent;
+    }
+  }
+
+  .hero_desc {
+    max-width: 560px;
+    @include fluidText(1rem, 1.2vw, 1.0625rem, null, 1.7);
+    color: $textSecondary;
+    margin-bottom: 34px;
+  }
+
+  .hero_actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 26px;
+  border-radius: $radiusSm;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: .01em;
+  transition:
+    background .18s ease,
+    border-color .18s ease,
+    transform .12s ease;
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $textPrimary;
+    outline-offset: 3px;
+  }
+}
+
+.btnPrimary {
+  background: $accent;
+  color: #fff;
+  border: 1.5px solid $accent;
+
+  &:hover {
+    background: $accentHover;
+    border-color: $accentHover;
+  }
+
+  svg {
+    transition: transform .18s ease;
+  }
+
+  &:hover svg {
+    transform: translateX(3px);
+  }
+}
+
+.btnOutline {
+  background: transparent;
+  color: $textPrimary;
+  border: 1.5px solid rgba(255, 255, 255, .5);
+
+  &:hover {
+    border-color: $textPrimary;
+    background: rgba(255, 255, 255, .06);
+  }
+}
+
+/* =========================================================
+   RESPONSYWNOŚĆ
+========================================================= */
+@media (max-width: 640px) {
+  .hero {
+    min-height: auto;
+    padding-block: 8px;
+  }
+e
+  .hero_actions {
+    width: 100%;
+
+    .btn {
+      flex: 1 1 auto;
+      justify-content: center;
+    }
+  }
+
+  .heroSideLabel {
+    display: none;
+  }
+}
+
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero_label,
+.heroTitle,
+.hero_desc,
+.hero_actions {
+  animation: heroFadeUp .7s $easeOut both;
+}
+
+.hero_label { animation-delay: .05s; }
+.heroTitle { animation-delay: .15s; }
+.hero_desc { animation-delay: .3s; }
+.hero_actions { animation-delay: .4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero_media {
+    transform: none !important;
+  }
+
+  .hero_label,
+  .heroTitle,
+  .hero_desc,
+  .hero_actions {
+    animation: none;
+  }
+}

@@ -1,0 +1,55 @@
+<section class="reason" id="o-nas">
+  <div class="reason_grid">
+    <div class="reason_info">
+      <div class="reason_label">
+        <span class="reason_label_line"></span>
+        <span class="reason_label_text">DLACZEGO MECHRENT?</span>
+      </div>
+
+      <h2 class="reason_title">15 lat budujemy<br />zaufanie klientów</h2>
+
+      <p class="reason_desc">
+        Od 2009 roku wypożyczamy maszyny budowlane firmom budowlanym,
+        deweloperom i klientom indywidualnym na terenie całej Polski. Nasze
+        doświadczenie to gwarancja profesjonalnej obsługi i sprawdzonego
+        sprzętu.
+      </p>
+
+      <div class="reason_stats">
+        @for (stat of stats; track stat.label) {
+          <div class="stat_cell">
+            <span class="stat_cell_value">{{ stat.value }}</span>
+            <span class="stat_cell_label">{{ stat.label }}</span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="reason_features">
+      @for (feature of features; track feature.title; let i = $index) {
+        <article class="feature_card"
+                 appReveal [appRevealDelay]="i * 80">
+          <span class="feature_icon">
+            @switch (feature.icon) {
+              @case ('clock') {
+                <svg lucideClock [size]="20"></svg>
+              }
+              @case ('shield') {
+                <svg lucideShieldCheck [size]="20"></svg>
+              }
+              @case ('wrench') {
+                <svg lucideWrench [size]="20"></svg>
+              }
+              @case ('truck') {
+                <svg lucideTruck [size]="20"></svg>
+              }
+            }
+          </span>
+
+          <h3>{{ feature.title }}</h3>
+          <p>{{ feature.description }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>

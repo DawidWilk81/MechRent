@@ -1,0 +1,11 @@
+@mixin fluidText($min, $preferred, $max, $weight: null, $line: null) {
+  font-size: clamp(#{$min}, #{$preferred}, #{$max});
+
+  @if $weight != null {
+    font-weight: $weight;
+  }
+
+  @if $line != null {
+    line-height: $line;
+  }
+}

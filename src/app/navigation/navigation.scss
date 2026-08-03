@@ -1,0 +1,235 @@
+@use '../../SCSS/variables' as *;
+@use '../../SCSS/placeholders' as *;
+@use '../../SCSS/mixins' as *;
+
+/* ---------- Header ---------- */
+.headerC {
+  height: $headerHeight;
+  position: sticky;
+  top: 0;
+  background: $surface;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  transition: box-shadow $transitionBase, background-color $transitionBase;
+  
+  &.scrolled {
+    box-shadow: $shadowMd;
+    background: rgba($surface, .92);
+    backdrop-filter: blur(8px);
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: $containerWidth;
+  width: 100%;
+  margin-inline: auto;
+  padding: 10px $containerPadding 10px;
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+}
+
+.logo-mark {
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: $surfaceAlt; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+.logo_Text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.logo_Title {
+  font-family: $fontDisplay;
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: 0.02em;
+}
+
+.logo-mech { color: $accent; }
+.logo-rent { color: $textPrimary}
+
+.logo_Sub {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: $textPrimary;
+  margin-top: 2px;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: clamp(18px, 2.4vw, 34px);
+  @extend %smallText;
+  
+  .phone{
+    color: #fff;
+  }
+  
+  a {
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: $textMutedOnLight;
+    white-space: nowrap;
+    transition: color .18s ease;
+    position: relative;
+
+    &:first-child{
+      color: #fff;
+    }
+
+    &:hover{
+      color: #fff; 
+    }
+
+    &:focus-visible{
+      outline: 2px solid $accent; outline-offset: 4px;
+    }
+    svg{color: #fff}
+  }
+
+  @media only screen and (max-width: 922px){
+    display: none;
+  }
+}
+
+.navigation_mobile {
+  display:none;
+}
+
+@media(max-width:922px){
+
+  .header {
+    align-items:center;
+  }
+
+
+  .navigation_mobile {
+
+    position:absolute;
+    top:100%;
+    left:0;
+    width:100%;
+    background:$surface;
+
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+
+    padding:20px $containerPadding;
+    gap:20px;
+    transform:translateY(-20px);
+    opacity:0;
+    pointer-events:none;
+    transition:
+      transform .25s ease,
+      opacity .25s ease;
+
+
+    a {
+      width: 100%;
+      color: $textSecondary;
+      font-weight: 600;
+      padding: 12px 4px;
+      border-bottom: 1px solid $divider;
+      text-align: center;
+
+      &:last-child {
+        border: none;
+        border-radius: $radiusSm;
+        background-color: $accent;
+        color: #fff; 
+        margin-top: 4px;
+      }
+
+      &:hover {
+        color: white;
+      }
+    }
+
+    &.open {
+      transform:translateY(0);
+      opacity:1;
+      pointer-events:auto;
+    }
+  }
+}
+
+.phone_Btn {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: $accent;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.01em;
+  padding: 12px 20px;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: background .18s ease;
+
+  &:hover { background: $accentHover; }
+
+  &:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+  
+  @media only screen and (max-width: 922px){
+    display: none;
+  }
+}
+
+.nav_Toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 34px;
+  height: 34px;
+  background: transparent;
+  border: none;
+  padding: 0;
+
+  &:hover{
+      cursor: pointer;
+  }
+  
+  span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: #fff;
+    border-radius: 2px;
+    transition: transform .2s ease, opacity .2s ease;
+  }
+
+  @media only screen and (max-width: 922px){
+    display: flex;
+  }
+}
+
+.nav_Toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav_Toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav_Toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }

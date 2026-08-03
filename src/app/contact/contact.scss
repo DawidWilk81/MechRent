@@ -1,0 +1,247 @@
+@use '../../scss/variables' as *;
+@use '../../scss/placeholders' as *;
+@use '../../scss/mixins' as *;
+
+/* =========================================================
+   CONTACT / SKONTAKTUJ SIĘ
+========================================================= */
+.contact {
+  background: $background;
+  padding-block: $sectionSpacing;
+}
+
+.contact_grid {
+  max-width: $containerWidth;
+  margin-inline: auto;
+  padding-inline: $containerPadding;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+/* ---------- Lewa kolumna ---------- */
+.contact_label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+
+  .contact_label_line {
+    width: 36px;
+    height: 2px;
+    background: $accent;
+    display: block;
+  }
+
+  .contact_label_text {
+    color: $accent;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+  }
+}
+
+.contact_title {
+  font-family: $fontDisplay;
+  font-weight: 900;
+  color: $textPrimary;
+  @include fluidText(1.75rem, 4vw, 2.75rem, null, 1.15);
+  margin: 0 0 20px;
+}
+
+.contact_desc {
+  max-width: 460px;
+  color: $textSecondary;
+  @include fluidText(.95rem, 1vw, 1.0625rem, null, 1.7);
+  margin: 0 0 36px;
+}
+
+.contact_methods {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.contact_method {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.contact_method_icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: $radiusSm;
+  background: $accent;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact_method_text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.contact_method_label {
+  color: $textMuted;
+  font-size: .6875rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+}
+
+.contact_method_value {
+  color: $textPrimary;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.contact_method_sub {
+  color: $textMuted;
+  font-size: .8125rem;
+}
+
+/* ---------- Formularz ---------- */
+.contact_form_card {
+  background: $card;
+  border-radius: $radiusMd;
+  padding: 32px;
+}
+
+.contact_form_title {
+  font-family: $fontDisplay;
+  font-weight: 700;
+  color: $textPrimary;
+  font-size: 1.375rem;
+  margin: 0 0 28px;
+}
+
+.contact_form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.form_row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form_field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  label {
+    color: $textMuted;
+    font-size: .6875rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+  }
+
+  input,
+  select,
+  textarea {
+    background: $inputBg;
+    border: 1px solid $inputBorder;
+    border-radius: $radiusSm;
+    color: $inputText;
+    font-family: $fontBody;
+    font-size: .9375rem;
+    padding: 12px 14px;
+    transition: border-color $transitionFast;
+
+    &::placeholder {
+      color: $inputPlaceholder;
+    }
+
+    &:focus-visible {
+      outline: none;
+      border-color: $inputBorderFocus;
+    }
+
+    &.invalid {
+      border-color: $error;
+    }
+  }
+
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237C8597' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 38px;
+
+    &.placeholder {
+      color: $inputPlaceholder;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 96px;
+    font-family: $fontBody;
+  }
+}
+
+.contact_submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: $accent;
+  color: #fff;
+  font-weight: 700;
+  font-size: .9375rem;
+  letter-spacing: .04em;
+  padding: 16px;
+  border: none;
+  border-radius: $radiusSm;
+  cursor: pointer;
+  transition: background $transitionFast;
+
+  &:hover {
+    background: $accentHover;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $textPrimary;
+    outline-offset: 3px;
+  }
+}
+
+.contact_privacy {
+  text-align: center;
+  color: $textMuted;
+  font-size: .8125rem;
+  margin: 0;
+}
+
+/* =========================================================
+   RESPONSYWNOŚĆ
+========================================================= */
+@media (max-width: 922px) {
+  .contact_grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 560px) {
+  .form_row {
+    grid-template-columns: 1fr;
+  }
+
+  .contact_form_card {
+    padding: 24px;
+  }
+}

@@ -1,0 +1,85 @@
+<section class="availability" id="cennik">
+  <div class="availability_header">
+    <div class="availability_intro">
+      <div class="availability_label">
+        <span class="availability_label_line"></span>
+        <span class="availability_label_text">CENNIK I DOSTĘPNOŚĆ</span>
+      </div>
+
+      <h2 class="availability_title">Wybierz maszynę</h2>
+    </div>
+
+    <p class="availability_desc">
+      Ceny netto. Transport i operator wliczony na żądanie. Rezerwacja
+      telefonicznie lub przez formularz.
+    </p>
+  </div>
+
+  <div class="availability_filters">
+    @for (filter of filters; track filter.key) {
+      <button
+        type="button"
+        class="filter_btn"
+        [class.active]="activeFilter() === filter.key"
+        (click)="setFilter(filter.key)"
+      >
+        {{ filter.label }}
+      </button>
+    }
+  </div>
+
+  <div class="availability_grid">
+    @for (item of visibleEquipment(); track item.name; let i = $index) {
+      <article class="equipment_card" appReveal [appRevealDelay]="i * 80">
+        <div
+          class="equipment_media"
+          [style.background-image]="'url(' + item.image + ')'"
+        >
+          <span
+            class="equipment_status"
+            [class.unavailable]="!item.available"
+          >
+            {{ item.available ? 'DOSTĘPNA' : 'ZAJĘTA' }}
+          </span>
+          <span class="equipment_category">{{ item.categoryLabel }}</span>
+        </div>
+
+        <div class="equipment_body">
+          <div class="equipment_heading">
+            <h3>{{ item.name }}</h3>
+            <span class="equipment_rating">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
+                <path d="M12 2.5l2.9 6.1 6.6.7-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.1 1.3-6.6L2.5 9.3l6.6-.7L12 2.5z" />
+              </svg>
+              {{ item.rating }} ({{ item.reviews }})
+            </span>
+          </div>
+
+          <div class="equipment_stats">
+            @for (stat of item.stats; track stat.label) {
+              <div class="stat_col">
+                <span class="stat_value">{{ stat.value }}</span>
+                <span class="stat_label">{{ stat.label }}</span>
+              </div>
+            }
+          </div>
+
+          <div class="equipment_price">
+            <span class="price_label">DZIEŃ / TYDZIEŃ</span>
+            <p class="price_value">
+              {{ item.pricePerDay }}
+              <span class="price_muted">/ {{ item.pricePerWeek }}</span>
+            </p>
+          </div>
+
+          <a [href]="item.link" class="equipment_cta">
+            ZAREZERWUJ
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </a>
+        </div>
+      </article>
+    }
+  </div>
+</section>

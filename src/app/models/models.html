@@ -1,0 +1,55 @@
+<section class="models" id="maszyny" #models>
+  <div class="models_header">
+    <div class="models_intro">
+      <div class="models_label">
+        <span class="models_label_line"></span>
+        <span class="models_label_text">NASZ PARK MASZYNOWY</span>
+      </div>
+
+      <h2 class="models_title">Maszyny gotowe<br />do każdej pracy</h2>
+    </div>
+
+    <p class="models_desc">
+      Ponad 200 maszyn różnych kategorii czeka na Twoje zlecenie. Każdy
+      sprzęt jest regularnie serwisowany i gotowy do natychmiastowego
+      wyjazdu.
+    </p>
+  </div>
+
+  <div class="models_grid">
+    @for (category of categories; track category.title; let i = $index) {
+      <article
+        class="model_card"
+        appReveal [appRevealDelay]="i * 80"
+        [style.background-image]="'url(' + category.image + ')'"
+      >
+        @if (category.badge) {
+          <span class="model_card_badge">{{ category.badge }}</span>
+        }
+
+        <span class="model_card_count">{{ category.count }} SZT.</span>
+
+        <div class="model_card_content">
+          <h3>{{ category.title }}</h3>
+          <p>{{ category.description }}</p>
+
+          <a [href]="category.link" class="model_card_link">
+            SPRAWDŹ DOSTĘPNOŚĆ
+            <svg
+              viewBox="0 0 24 24"
+              width="16" height="16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </a>
+        </div>
+      </article>
+    }
+  </div>
+</section>

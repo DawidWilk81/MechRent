@@ -1,0 +1,148 @@
+<section class="contact" id="kontakt">
+  <div class="contact_grid">
+    <div class="contact_info" appReveal [appRevealDelay]="120">
+      <div class="contact_label">
+        <span class="contact_label_line"></span>
+        <span class="contact_label_text">SKONTAKTUJ SIĘ</span>
+      </div>
+
+      <h2 class="contact_title">Zapytaj o wycenę<br />bez zobowiązań</h2>
+
+      <p class="contact_desc">
+        Wypełnij formularz lub zadzwoń bezpośrednio. Odpowiadamy w ciągu 2
+        godzin w dni robocze. Oferujemy darmową konsultację dla każdego
+        projektu.
+      </p>
+
+      <ul class="contact_methods">
+        @for (method of contactMethods; track method.label; let i = $index) {
+          <li class="contact_method">
+            <span class="contact_method_icon">
+              @switch (method.icon) {
+                @case ('phone') {
+                  <svg lucidePhone [size]="18"></svg>
+                }
+                @case ('mail') {
+                  <svg lucideMail [size]="18"></svg>
+                }
+                @case ('pin') {
+                  <svg lucideMapPin [size]="18"></svg>
+                }
+              }
+            </span>
+
+            <span class="contact_method_text">
+              <span class="contact_method_label">{{ method.label }}</span>
+              <span class="contact_method_value">{{ method.value }}</span>
+              <span class="contact_method_sub">{{ method.sub }}</span>
+            </span>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <div class="contact_form_card" appReveal [appRevealDelay]="180">
+      <h3 class="contact_form_title">Formularz zapytania</h3>
+
+      <form class="contact_form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+        <div class="form_row">
+          <div class="form_field">
+            <label for="fullName">IMIĘ I NAZWISKO *</label>
+            <input
+              id="fullName"
+              type="text"
+              formControlName="fullName"
+              placeholder="Jan Kowalski"
+              [class.invalid]="isInvalid('fullName')"
+            />
+          </div>
+
+          <div class="form_field">
+            <label for="company">FIRMA</label>
+            <input
+              id="company"
+              type="text"
+              formControlName="company"
+              placeholder="Nazwa firmy"
+            />
+          </div>
+        </div>
+
+        <div class="form_row">
+          <div class="form_field">
+            <label for="phone">TELEFON *</label>
+            <input
+              id="phone"
+              type="tel"
+              formControlName="phone"
+              placeholder="+48 000 000 000"
+              [class.invalid]="isInvalid('phone')"
+            />
+          </div>
+
+          <div class="form_field">
+            <label for="email">E-MAIL</label>
+            <input
+              id="email"
+              type="email"
+              formControlName="email"
+              placeholder="jan@firma.pl"
+              [class.invalid]="isInvalid('email')"
+            />
+          </div>
+        </div>
+
+        <div class="form_field">
+          <label for="machineType">RODZAJ MASZYNY *</label>
+          <select
+            id="machineType"
+            formControlName="machineType"
+            [class.invalid]="isInvalid('machineType')"
+            [class.placeholder]="!form.value.machineType"
+          >
+            <option value="" disabled selected hidden>Wybierz typ maszyny...</option>
+            @for (type of machineTypes; track type) {
+              <option [value]="type">{{ type }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="form_row">
+          <div class="form_field">
+            <label for="startDate">DATA ROZPOCZĘCIA</label>
+            <input id="startDate" type="date" formControlName="startDate" />
+          </div>
+
+          <div class="form_field">
+            <label for="duration">CZAS TRWANIA</label>
+            <input
+              id="duration"
+              type="text"
+              formControlName="duration"
+              placeholder="np. 2 tygodnie"
+            />
+          </div>
+        </div>
+
+        <div class="form_field">
+          <label for="notes">DODATKOWE INFORMACJE</label>
+          <textarea
+            id="notes"
+            formControlName="notes"
+            rows="4"
+            placeholder="Opisz swój projekt, lokalizację prac lub inne wymagania..."
+          ></textarea>
+        </div>
+
+        <button type="submit" class="contact_submit">
+          WYŚLIJ ZAPYTANIE
+          <svg lucideSend [size]="16"></svg>
+        </button>
+
+        <p class="contact_privacy">
+          Wysyłając formularz, akceptujesz naszą politykę prywatności.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>

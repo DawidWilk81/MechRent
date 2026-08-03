@@ -1,0 +1,139 @@
+
+$firmName: 'RUSZTEX';
+// ===================== TŁA ===================== 
+
+$background: #0F1115;       // główne tło strony
+$surface: #171A21;          // sekcje / navbar
+$surfaceAlt: #1E222B;       // alternatywne sekcje
+$card: #232833;             // karty produktów / modeli
+$overlay: rgba(15, 17, 21, .72);
+
+// ===================== SEKCJE JASNE (alternating light section) =====================
+$surfaceLight: #F2F0EA;       // kremowe tło sekcji 
+$textMutedOnLight: #797971;   // mętny tekst na jasnym tle 
+
+/* =====================
+        TYPOGRAFIA
+   =====================
+*/
+$fontDisplay: 'Space Grotesk', sans-serif;
+$fontBody: 'Inter', sans-serif;
+
+/* =====================
+        TEKST
+/* ===================== */
+$textPrimary: #F5F7FA;      // główny tekst
+$textSecondary: #B7BEC9;    // opisy
+$textMuted: #8B93A3;        // mniej ważne informacje
+$textInverted: #0F1115;     // tekst na jasnym tle
+
+/* =====================
+        KOLORY AKCENTOWE
+/* ===================== */
+
+$accent: #F97316;           // pomarańcz budowlany
+$accentHover: #EA580C;
+$accentPressed: #C2410C;
+$accentSoft: #FED7AA;
+
+/* =====================
+     KOLORY TECHNICZNE
+// ===================== */
+
+$steel: #64748B;            // stal
+$steelLight: #94A3B8;
+$steelDark: #475569;
+
+$warning: #F59E0B;          // ostrzeżenie
+$success: #22C55E;          // sukces
+$error: #EF4444;            // błąd
+$info: #2563EB;             // informacja
+
+/* =====================
+     BORDER / DIVIDER
+// ===================== */
+
+$border: #2B3140;
+$borderStrong: #3A4354;
+$divider: #313847;
+
+/* =====================
+     BUTTONS
+// ===================== */
+
+$buttonPrimaryBg: $accent;
+$buttonPrimaryText: #FFFFFF;
+$buttonPrimaryHover: $accentHover;
+
+$buttonSecondaryBg: transparent;
+$buttonSecondaryText: $textPrimary;
+$buttonSecondaryBorder: $borderStrong;
+$buttonSecondaryHover: rgba(255,255,255,.05);
+
+/* =====================
+     INPUTS
+// ===================== */
+
+$inputBg: #151922;
+$inputBorder: #2D3442;
+$inputBorderFocus: $accent;
+$inputText: $textPrimary;
+$inputPlaceholder: #7C8597;
+
+/* =====================
+     SHADOWS
+// ===================== */
+
+$shadowSm: 0 2px 6px rgba(0,0,0,.18);
+$shadowMd: 0 8px 24px rgba(0,0,0,.28);
+$shadowLg: 0 20px 50px rgba(0,0,0,.38);
+
+/* =====================
+     GRADIENTY
+// ===================== */
+
+$heroGradient:
+     linear-gradient(
+        90deg,
+        rgba(10,10,10,.96) 0%,
+        rgba(10,10,10,.88) 28%,
+        rgba(10,10,10,.45) 52%,
+        rgba(10,10,10,.18) 68%,
+        rgba(10,10,10,.35) 100%
+     ),
+     linear-gradient(
+        0deg,
+        rgba(0,0,0,.55) 0%,
+        rgba(0,0,0,0) 22%,
+        rgba(0,0,0,0) 70%,
+        rgba(0,0,0,.5) 100%
+     );
+
+$sectionGradient:
+  linear-gradient(
+    180deg,
+    #171A21 0%,
+    #12151B 100%
+  );
+
+/* =====================
+    LAYOUT
+// ===================== */
+
+$containerWidth: 1300px;
+$containerPadding: 24px;
+$headerHeight: 80px;
+$sectionSpacing: 96px;
+$radiusSm: 8px;
+$radiusMd: 14px;
+$radiusLg: 22px;
+$radiusFull: 9999px;
+ 
+/* =====================
+    TRANSITIONS
+// ===================== */
+
+$transitionFast: .15s ease;
+$transitionBase: .25s ease;
+$transitionSlow: .4s ease;
+$easeOut: cubic-bezier(.16, 1, .3, 1);

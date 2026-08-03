@@ -1,0 +1,172 @@
+@use '../../scss/variables' as *;
+@use '../../scss/placeholders' as *;
+@use '../../scss/mixins' as *;
+
+/* =========================================================
+   REASON / DLACZEGO MECHRENT
+========================================================= */
+.reason {
+  background: $surfaceLight;
+  padding-block: $sectionSpacing;
+}
+
+.reason_grid {
+  max-width: $containerWidth;
+  margin-inline: auto;
+  padding-inline: $containerPadding;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+/* ---------- Lewa kolumna ---------- */
+.reason_label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+
+  .reason_label_line {
+    width: 36px;
+    height: 2px;
+    background: $accent;
+    display: block;
+  }
+
+  .reason_label_text {
+    color: $accent;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+  }
+}
+
+.reason_title {
+  font-family: $fontDisplay;
+  font-weight: 900;
+  color: $textInverted;
+  @include fluidText(1.75rem, 4vw, 2.75rem, null, 1.15);
+  margin: 0 0 20px;
+}
+
+.reason_desc {
+  max-width: 480px;
+  color: $textMutedOnLight;
+  @include fluidText(.95rem, 1vw, 1.0625rem, null, 1.7);
+  margin: 0 0 36px;
+}
+
+.reason_stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 480px;
+}
+
+.stat_cell {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  &:nth-child(1) {
+    padding: 0 24px 20px 0;
+    border-right: 1px solid $divider;
+    border-bottom: 1px solid $divider;
+  }
+
+  &:nth-child(2) {
+    padding: 0 0 20px 24px;
+    border-bottom: 1px solid $divider;
+  }
+
+  &:nth-child(3) {
+    padding: 20px 24px 0 0;
+    border-right: 1px solid $divider;
+  }
+
+  &:nth-child(4) {
+    padding: 20px 0 0 24px;
+  }
+}
+
+.stat_cell_value {
+  color: $accent;
+  font-family: $fontDisplay;
+  font-weight: 800;
+  font-size: 1.75rem;
+}
+
+.stat_cell_label {
+  color: $textMutedOnLight;
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+}
+
+/* ---------- Prawa kolumna: karty ---------- */
+.reason_features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $containerPadding;
+}
+
+.feature_card {
+  background: #fff;
+  border-radius: $radiusMd;
+  padding: 24px;
+  box-shadow: $shadowSm;
+  transition: transform $transitionBase $easeOut, box-shadow $transitionBase $easeOut;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadowMd;
+  }
+}
+
+.feature_icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: $radiusSm;
+  background: $accentSoft;
+  color: $accent;
+  margin-bottom: 16px;
+}
+
+.feature_card h3 {
+  color: $textInverted;
+  font-family: $fontDisplay;
+  font-weight: 700;
+  font-size: 1rem;
+  margin: 0 0 8px;
+}
+
+.feature_card p {
+  color: $textMutedOnLight;
+  font-size: .875rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* =========================================================
+   RESPONSYWNOŚĆ
+========================================================= */
+@media (max-width: 922px) {
+  .reason_grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 560px) {
+  .reason_features {
+    grid-template-columns: 1fr;
+  }
+
+  .reason_stats {
+    max-width: 100%;
+  }
+}
