@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "Rusztex": {
+    "Mechrent": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -73,10 +73,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Rusztex:build:production"
+              "buildTarget": "Mechrent:build:production"
             },
             "development": {
-              "buildTarget": "Rusztex:build:development"
+              "buildTarget": "Mechrent:build:development"
             }
           },
           "defaultConfiguration": "development"
